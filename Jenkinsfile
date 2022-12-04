@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'github-creds', url: 'https://github.com/kishanth94/javawebapplication'
+                git credentialsId: 'github-creds', url: 'https://github.com/sai-devops-git/github-demo.git'
             }
         }
 	
@@ -68,7 +68,7 @@ pipeline{
                 sh """
 		    echo $WORKSPACE
 		    mv target/*.war target/javawebapplication.war
-                    scp -o StrictHostKeyChecking=no target/javawebapplication.war  ec2-user@52.91.183.130:/opt/tomcat8/webapps/
+                    scp -o StrictHostKeyChecking=no target/javawebapplication.war  ec2-user@54.235.12.113:/opt/tomcat8/webapps/
                     ssh ec2-user@172.31.21.103 /opt/tomcat8/bin/shutdown.sh
                     ssh ec2-user@172.31.21.103 /opt/tomcat8/bin/startup.sh
                 
